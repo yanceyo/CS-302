@@ -34,7 +34,7 @@ int main()
 	readImageHeader(cpImgName, iN, iM, iQ, type);
 
 	Image imgTest(iN, iM, iQ);
-	Image imgSub;
+	Image imgSub(imgTest);
 
 	readImage(cpImgName, imgTest);
 
@@ -46,9 +46,9 @@ int main()
 		cout << "Average gray level is: " << iAvgGrayLvl << endl << endl;
 	*/
 
-	imgTest.getSubImage(0,0,1,1,imgSub);
+	imgTest.getSubImage(10,10,20,20,imgSub);
 
-	writeImage(cpSaveFile,imgTest);
+	writeImage(cpSaveFile,imgSub);
 
 	// Exit Main
 	return 0;

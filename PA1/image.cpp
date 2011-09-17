@@ -83,21 +83,19 @@ void Image::getSubImage(int ULr, int ULc, int LRr, int LRc, Image& oldImage)
 
 	// Init vars
 	int i,j,k,l;
-	Image *csrHead, *imgSubAddr;
-	int iNewRow = ULr - LRr;
-	int iNewCol = ULc = LRc;
+	Image *csrHead;
+	int iNewRow = LRr - ULr;
+	int iNewCol = LRc - ULc;
 
 	// Create a new image with the same
 	// gray levels, but size by taking
 	// ULr - LRr for the rows and
 	// ULc - LRc for the cols
 	Image imgSub(iNewRow, iNewCol, Q);
-	imgSubAddr = &imgSub;
 
 	// Create a "head" cursor
 	// by copying the ref of oldImage
-	*csrHead = oldImage;
-
+	csrHead = &imgSub;
 
 	// Loop using ULr as the starting point for rows
 	// and loop until LRr is reached
@@ -124,10 +122,10 @@ void Image::getSubImage(int ULr, int ULc, int LRr, int LRc, Image& oldImage)
 	// Dealloc oldImage to
 	// prepare for reuse
 	// delete[] oldImage;
-
+	
 	// Set ref of oldImage to new Image
 	// created in function
-	imgSubAddr = csrHead;
+	oldImage = *csrHead;
 }
 
 int Image::meanGray()

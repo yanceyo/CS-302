@@ -24,12 +24,13 @@ int main()
 	// without using readImageHeader
 	int iN, iM, iQ;
 	int iAvgGrayLvl;
-	bool type;
+	bool type,bHorz;
     int row1 = 0;
     int col1 = 0;
     int row2 = 0;
     int col2 = 0;
 	char cpImgName[40];
+	char sAns[40];
 	char cpSaveFile[] = "new_image.pgm";
 
 	cout << "Please enter filename:";
@@ -72,7 +73,32 @@ int main()
       //imgTest.getSubImage(row1,col1,row2,col2,imgSub);
     */
 
-    imgTest.reflectImage(true, imgSub);
+	// Menu option for reflectImage()
+	/*
+	   cout << "Do you want to reflect horizontally? (No will reflect vertically) ";
+
+	   cin >> sAns;
+
+	   // Need to use string library or due a quick string compare function to
+	   // have sAns be better compared since any answer will come out to
+	   // false at the moment, possible changes could be changing to single
+	   // quotes as a fix as well.
+	   cout << sAns << endl;
+	   if( sAns == "Yes" || sAns == "yes" || sAns == "Y" || sAns == "y")
+	   {
+		   cout << "bHorz is true" << endl;
+		   bHorz = true;
+	   }
+	   else
+	   {
+		   cout << "bHorz is false" << endl;
+		   bHorz = false;
+	   }
+
+	   imgTest.reflectImage(bHorz, imgSub);
+	*/
+
+   imgTest.rotateImage(60, imgSub);
 
 	writeImage(cpSaveFile,imgSub);
 

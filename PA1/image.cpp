@@ -232,6 +232,47 @@ void Image::translateImage(int t, Image& oldImage)
 
 void Image::rotateImage(int theta, Image& oldImage)
 {
+	// Goal: rotate oldImage by theta around a point
+	// Returns: None
+
+	// Init vars
+	int i,j;
+	int iCenterRow = 0;
+	int iCenterCol = 0;
+	int iNewRow = 0;
+	int iNewCol = 0;
+	const int PI = 3.14159265;
+
+	// Convert theta to radians
+	theta = ((float)theta * PI)/180.0;
+
+	// Ask for initial point to center
+	cout << "Please enter row to center around: ";
+	cin >> iCenterRow;
+
+	cout << "Please enter col to center around: ";
+	cin >> iCenterCol;	
+
+	// Loop through rows and cols and set value
+	for( i = 0; i < N; i++ )
+	{
+		// Loop - cols
+		for( j = 0; j < M; j++ )
+		{
+			// Check new pixelValue and
+			// if out of bounds continue on
+			// otherwise set value
+			iNewRow = iCenterRow + (i - iCenterRow) * cos(theta) - (j - iCenterCol) * sin(theta);
+			iNewCol = iCenterCol + (i - iCenterRow) * sin(theta) + (j - iCenterCol) * cos(theta);
+			if( iNewRow > N || iNewRow < 0 ||
+				iNewCol > M || iNewCol < 0 )
+			{
+				continue;
+			}
+
+			oldImage.setPixelVal(iNewRow, iNewCol, pixelValue[i][j] );
+		}
+	}
 
 }
 

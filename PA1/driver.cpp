@@ -25,10 +25,10 @@ int main()
 	int iN, iM, iQ;
 	int iAvgGrayLvl;
 	bool type;
-   int row1 = 0;
-   int col1 = 0;
-   int row2 = 0;
-   int col2 = 0;
+    int row1 = 0;
+    int col1 = 0;
+    int row2 = 0;
+    int col2 = 0;
 	char cpImgName[40];
 	char cpSaveFile[] = "new_image.pgm";
 
@@ -50,14 +50,29 @@ int main()
 		cout << "Average gray level is: " << iAvgGrayLvl << endl << endl;
 	*/
 
-	// Menu option of getSubImage()
-   cout << "Enter parameters: " << endl;
-   cin >> row1;
-   cin >> col1;
-   cin >> row2;
-   cin >> col2;
+	// Menu option for getSubImage()
+    /*
+      // Get ULr
+      cout << "Please enter upper left row: ";
+      cin >> row1;
+   
+      // Get ULc
+      cout << endl << "Please enter upper left column: ";
+      cin >> col1;
+   
+      // Get LRr
+      cout << endl << endl << "**Note lower right values should be higher than upper left**"
+         << endl << "Please enter lower right row: ";
+      cin >> row2;
+   
+      // Get LRc
+      cout << endl << "Please enter lower right column: ";
+      cin >> col2;
+   
+      //imgTest.getSubImage(row1,col1,row2,col2,imgSub);
+    */
 
-   imgTest.getSubImage(row1,col1,row2,col2,imgSub);
+    imgTest.reflectImage(true, imgSub);
 
 	writeImage(cpSaveFile,imgSub);
 

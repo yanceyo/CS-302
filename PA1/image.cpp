@@ -114,8 +114,9 @@ void Image::getSubImage(int ULr, int ULc, int LRr, int LRc, Image& oldImage)
 			l++;
 		}
 
-		// Increment k to move to the next sub image row
+		// Increment k to move to the next sub image row and reset column
 		k++;
+		l = 0;
 	}
 
 	// Dealloc oldImage to
@@ -164,7 +165,64 @@ void Image::shrinkImage(int s, Image& oldImage)
 
 void Image::reflectImage(bool flag, Image& oldImage)
 {
+	// Goal: Reflect image horizontally if true,
+	// vertical if false;
+	// Returns: none
 
+	// Init vars
+	int i,j;
+	int k = 0;
+	int l = 0;
+
+	// Flag true reflect horizontal
+	if( flag )
+	{
+		// Loop starting at the number of
+		// rows and decrementing to zero
+		for( i = 0; i < N; i++)
+		{
+			// Loop starting at the number of
+			// columns and decrementing to zero
+			for( j = M-1; j >= 0; j--)
+			{
+				// Starting at the beginning row
+				// and column set the pixelValue
+				// effectively reflecting the image
+				oldImage.setPixelVal(l, k, pixelValue[i][j]);
+
+				// increment start column counter
+				k++;
+			}
+
+			// Increment start row counter and reset column
+			l++;
+			k = 0;
+		}
+	}
+	else // false reflect vertically
+	{
+		// Loop starting at the number of
+		// rows and decrementing to zero
+		for( i = N-1; i >= 0; i--)
+		{
+			// Loop starting at the number of
+			// columns and decrementing to zero
+			for( j = 0; j < M; j++)
+			{
+				// Starting at the beginning row
+				// and column set the pixelValue
+				// effectively reflecting the image
+				oldImage.setPixelVal(l, k, pixelValue[i][j]);
+
+				// increment start column counter
+				k++;
+			}
+
+			// Increment start row counter and reset column
+			l++;
+			k = 0;
+		}
+	}
 }
 
 void Image::translateImage(int t, Image& oldImage)

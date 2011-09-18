@@ -82,7 +82,9 @@ void Image::getSubImage(int ULr, int ULc, int LRr, int LRc, Image& oldImage)
 	// Returns: none
 
 	// Init vars
-	int i,j,k,l;
+	int i,j;
+	int k = 0;
+	int l = 0;
 	Image *csrHead;
 	int iNewRow = LRr - ULr;
 	int iNewCol = LRc - ULc;
@@ -105,18 +107,15 @@ void Image::getSubImage(int ULr, int ULc, int LRr, int LRc, Image& oldImage)
 		// and loop until LRc is reached.
 		for( j=ULc; j<LRc; j++)
 		{
-			// Loop through rows of new image
-			for( k=0; k<iNewRow; k++)
-			{
-				// Loop through cols of new image
-				for( l=0; l<iNewCol; l++)
-				{
-					// Set pixel value for new image
-					imgSub.setPixelVal(k, l, pixelValue[i][j]);
-				}
-			}
-
+			// Set pixel value for new image
+			imgSub.setPixelVal(k, l, pixelValue[i][j]);
+			
+			// Increment l to move to the next sub image column
+			l++;
 		}
+
+		// Increment k to move to the next sub image row
+		k++;
 	}
 
 	// Dealloc oldImage to

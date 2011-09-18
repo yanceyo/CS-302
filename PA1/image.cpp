@@ -278,11 +278,33 @@ void Image::rotateImage(int theta, Image& oldImage)
 
 Image Image::operator+(Image image1)
 {
+	// Goal: Adds parts of two images together
+	// Return: Combined image from two pictures.
 	Image imgSum;
 
+	// Init vars
+	int i,j;
+	int iImg1Val = 0;
+	int iImg2Val = 0;
+	float a = 0.7;
 
+	// Loop through rows and columns
+	for( i = 0; i < N; i++ )
+	{
+		for( j = 0; j < M; j++ )
+		{
+			// Sum row and column part
+			getPixelVal(i, j, iImg1Val);
+			image1.getPixelVal(i, j, iImg2Val);
 
-	return imgSum;
+			iImg1Val *= a;
+			iImg2Val *= (1 - a);
+
+			pixelValue[i][j] = iImg1Val + iImg2Val;
+		}
+	}
+	
+	return *this;
 }
 
 Image Image::operator-(Image image1)

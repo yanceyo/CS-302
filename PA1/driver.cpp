@@ -25,7 +25,11 @@ int main()
 	int iN, iM, iQ;
 	int iAvgGrayLvl;
 	bool type;
-	char* cpImgName;
+   int row1 = 0;
+   int col1 = 0;
+   int row2 = 0;
+   int col2 = 0;
+	char cpImgName[40];
 	char cpSaveFile[] = "new_image.pgm";
 
 	cout << "Please enter filename:";
@@ -46,7 +50,14 @@ int main()
 		cout << "Average gray level is: " << iAvgGrayLvl << endl << endl;
 	*/
 
-	imgTest.getSubImage(10,10,20,20,imgSub);
+	// Menu option of getSubImage()
+   cout << "Enter parameters: " << endl;
+   cin >> row1;
+   cin >> col1;
+   cin >> row2;
+   cin >> col2;
+
+   imgTest.getSubImage(row1,col1,row2,col2,imgSub);
 
 	writeImage(cpSaveFile,imgSub);
 

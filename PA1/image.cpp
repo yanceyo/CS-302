@@ -264,8 +264,9 @@ void Image::rotateImage(int theta, Image& oldImage)
 			// otherwise set value
 			iNewRow = iCenterRow + (i - iCenterRow) * cos(theta) - (j - iCenterCol) * sin(theta);
 			iNewCol = iCenterCol + (i - iCenterRow) * sin(theta) + (j - iCenterCol) * cos(theta);
-			if( iNewRow > N || iNewRow < 0 ||
-				iNewCol > M || iNewCol < 0 )
+
+			if( iNewRow >= N || iNewRow < 0 ||
+				iNewCol >= M || iNewCol < 0 )
 			{
 				continue;
 			}

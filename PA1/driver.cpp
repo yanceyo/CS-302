@@ -22,33 +22,26 @@ int main()
 {
 	// Question: How do I dynamically size image
 	// without using readImageHeader
-	int iN, iM, iQ, iN1, iM1, iQ1;
+	int iN, iM, iQ;
 	int iAvgGrayLvl;
-	bool type,type1,bHorz;
+	bool type,bHorz;
     int row1 = 0;
     int col1 = 0;
     int row2 = 0;
     int col2 = 0;
 	char cpImgName[40];
-    char cpImgName1[40];
 	char sAns[40];
 	char cpSaveFile[] = "new_image.pgm";
 
-	cout << "Please enter first image:";
+	cout << "Please enter filename:";
 	cin >> cpImgName;
 
-    cout << "Please enter second image:";
-    cin >> cpImgName1;
-
 	readImageHeader(cpImgName, iN, iM, iQ, type);
-    readImageHeader(cpImgName1, iN1, iM1, iQ1, type1);
 
 	Image imgTest(iN, iM, iQ);
-    Image imgTest1(iN1, iM1, iQ1);
 	Image imgSub(imgTest);
 
 	readImage(cpImgName, imgTest);
-    readImage(cpImgName1, imgTest1);
 
 	// Menu option of meanGray()
 	/*
@@ -59,7 +52,7 @@ int main()
 	*/
 
 	// Menu option for getSubImage()
-   /*
+    /*
       // Get ULr
       cout << "Please enter upper left row: ";
       cin >> row1;
@@ -78,7 +71,7 @@ int main()
       cin >> col2;
    
       //imgTest.getSubImage(row1,col1,row2,col2,imgSub);
-   */
+    */
 
 	// Menu option for reflectImage()
 	/*
@@ -90,22 +83,20 @@ int main()
 	   // have sAns be better compared since any answer will come out to
 	   // false at the moment, possible changes could be changing to single
 	   // quotes as a fix as well.
-	   cout << sAns << endl;
-	   if( sAns == "Yes" || sAns == "yes" || sAns == "Y" || sAns == "y")
+	   if( strcmp(sAns, "Yes") == 0 || strcmp(sAns, "yes") == 0 || 
+          strcmp(sAns, "Y") == 0 || strcmp(sAns, "y") == 0 )
 	   {
-		   cout << "bHorz is true" << endl;
 		   bHorz = true;
 	   }
 	   else
 	   {
-		   cout << "bHorz is false" << endl;
 		   bHorz = false;
 	   }
 
 	   imgTest.reflectImage(bHorz, imgSub);
 	*/
 
-   imgSub = imgTest + imgTest1;
+    imgTest.rotateImage(60, imgSub);
 
 	writeImage(cpSaveFile,imgSub);
 
@@ -264,5 +255,4 @@ ifp.getline(header,100,'\n');
  ifp.close();
 
 }
-
 

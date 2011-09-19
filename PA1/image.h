@@ -7,6 +7,7 @@
 #include<iostream>
 #include<fstream>
 #include"math.h"
+#include"string.h"
 
 class Image
 {

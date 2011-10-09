@@ -379,7 +379,10 @@ Image Image::searchImage(Image &outImg, int iItem, int iMatch, int &imgRow, int 
 	int iSubRow = 0;
 	int iSubCol = 0;
 	int iTestRow = imgRow;
+	int iInitRow = imgRow;
+	int iInitCol = imgCol;
 	int iTestCol = imgCol;
+	bool bNeighbor = false;
 	bool bChkRowBelow = false;
 	bool bChkColRight = false;
 
@@ -442,7 +445,7 @@ Image Image::searchImage(Image &outImg, int iItem, int iMatch, int &imgRow, int 
 //			cout << "Row: " << iTestRow << "Column: " << iTestCol
 //				 << " Value: " << pixelValue[iTestRow][iTestCol] << endl;
 			if( pixelValue[iTestRow][iTestCol] == iMatch)
-				outImg.pixelValue[iTestRow][iTestCol] = iItem;
+				bNeighbor = true;
 		}
 
 		// Reset iTestCol
@@ -462,6 +465,10 @@ Image Image::searchImage(Image &outImg, int iItem, int iMatch, int &imgRow, int 
 		}
 		else
 			imgCol++;
+
+		// Mark point if a neighbor was found
+		if(bNeighbor)
+			outImg.pixelValue[iInitRow][iInitCol] = iItem;
 
 		// Recursive call
 		searchImage(outImg, iItem, iMatch, imgRow, imgCol, iSearchSec);

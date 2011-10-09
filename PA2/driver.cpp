@@ -43,6 +43,7 @@ int main()
   readImageHeader(cpImgName, iN, iM, iQ, type);
 
   Image imgTest(iN, iM, iQ);
+  Image imgBlank(iN, iM, iQ);
 
   readImage(cpImgName, imgTest);
 
@@ -103,7 +104,9 @@ int main()
 
     imgSub.threshold(iThresVal);
 
-  writeImage(cpSaveFile,imgSub);
+    imgSub.searchImage(imgBlank,255,255,row1,col1,3);
+
+  writeImage(cpSaveFile,imgBlank);
 
   // Exit Main
   return 0;
@@ -260,3 +263,4 @@ ifp.getline(header,100,'\n');
  ifp.close();
 
 }
+

@@ -28,6 +28,7 @@ class Image
 		void translateImage(int,Image&);
 		void rotateImage(int,Image&);
 		Image threshold(int);
+		Image searchImage(Image&,int,int,int&,int&,int);
 		Image operator+(Image);
 		Image operator-(Image);
 		Image negateImage(); // may need changing

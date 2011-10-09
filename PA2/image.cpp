@@ -372,6 +372,103 @@ Image& Image::operator=(const Image& imgAssign)
 	return *this;
 }
 
+Image Image::searchImage(Image &outImg, int iItem, int iMatch, int &imgRow, int &imgCol, int iSearchSec)
+{
+	// Init vars
+	int i,j;
+	int iSubRow = 0;
+	int iSubCol = 0;
+	int iTestRow = imgRow;
+	int iTestCol = imgCol;
+	bool bChkRowBelow = false;
+	bool bChkColRight = false;
+
+	// Loop till row iterative counter < iSearchSec
+	for( i = 0; i < iSearchSec; i++)
+	{
+		// Check if row above or bottom will be checked
+		bChkRowBelow = (i % 2) == 1;
+
+		// Set test row
+		if( bChkRowBelow )
+			iTestRow += i - iSubRow;
+		else
+			iTestRow -= i + iSubRow;
+
+		// If row doesn't exist, move to a row that exists
+		if( iTestRow < 0 || iTestRow >= N)
+		{
+			if( bChkRowBelow )
+			{
+				iSubRow = iTestRow - i;
+				iTestRow -= iSubRow;
+			}
+			else
+			{
+				iSubRow = i - iTestRow;
+				iTestRow += iSubRow;
+			}
+		}
+
+		// Loop till col iterative counter < iSearchSec
+		for( j = 0; j < iSearchSec; j++)
+		{
+			// Check if col left or right will be checked
+			bChkColRight = (j % 2) == 1;
+
+			// Set test col
+			if( bChkColRight )
+				iTestCol += j - iSubCol;
+			else
+				iTestCol -= j + iSubCol;
+
+			// If col doesn't exist, move to a col that exists
+			if( iTestCol < 0 || iTestCol >= M)
+			{
+				if( bChkColRight )
+				{
+					iSubCol = iTestCol - j;
+					iTestCol -= iSubCol;
+				}
+				else
+				{
+					iSubCol = j - iTestCol;
+					iTestCol += iSubCol;
+				}
+			}
+
+			// Get pixelValue and compare to iMatch
+			//   True: write iItem to outImg
+//			cout << "Row: " << iTestRow << "Column: " << iTestCol
+//				 << " Value: " << pixelValue[iTestRow][iTestCol] << endl;
+			if( pixelValue[iTestRow][iTestCol] == iMatch)
+				outImg.pixelValue[iTestRow][iTestCol] = iItem;
+		}
+
+		// Reset iTestCol
+		iTestCol = imgCol;
+	}
+
+	// Check if imgRow and imgCol isn't max True: increment imgRow and recursive call
+	if( !(imgRow >= N && imgCol >= M) )
+	{
+		// Check if imgCol is max
+		// True: reset imgCol and increment imgRow
+		// False: increment imgCol
+		if( imgCol >= M)
+		{
+			imgCol = 0;
+			imgRow++;
+		}
+		else
+			imgCol++;
+
+		// Recursive call
+		searchImage(outImg, iItem, iMatch, imgRow, imgCol, iSearchSec);
+	}
+
+	return *this;
+}
 
 
 

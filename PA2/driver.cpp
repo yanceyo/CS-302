@@ -7,21 +7,23 @@
 
 // Header files
 #include"image.h"
+#include"queue.cpp"
 
 using namespace std;
 
 // Global constants
+const int MAX_QUE = 15000;
 
 // Function prototypes
 void readImage(char[], Image&);
 void writeImage(char[], Image&);
 void readImageHeader(char[],int&,int&,int&,bool&);
+void findComponentBFS(Image,Image&,int,int,int);
+int computeComponents(Image*, Image*);
 
 // Main
 int main()
 {
-  // Question: How do I dynamically size image
-  // without using readImageHeader
   int iN, iM, iQ;
   int iAvgGrayLvl;
   bool type,bHorz;
@@ -30,6 +32,7 @@ int main()
   int row2 = 0;
   int col2 = 0;
   int iThresVal;
+  int iNumLbl = 0;
   char cpImgName[40];
   char sAns[40];
   char cpSaveFile[] = "new_image.pgm";
@@ -44,6 +47,7 @@ int main()
 
   Image imgTest(iN, iM, iQ);
   Image imgBlank(iN, iM, iQ);
+  Image imgOut(iN, iM, iQ);
 
   readImage(cpImgName, imgTest);
 
@@ -105,8 +109,13 @@ int main()
     imgSub.threshold(iThresVal);
 
     imgSub.searchImage(imgBlank,255,255,row1,col1,3);
+    imgSub.searchImage(imgBlank,255,255,row1,col1,3);
+    imgSub.searchImage(imgBlank,0,0,row1,col1,3);
+    imgSub.searchImage(imgBlank,0,0,row1,col1,3);
 
-  writeImage(cpSaveFile,imgBlank);
+    iNumLbl = computeComponents(&imgBlank,&imgOut);
+
+  writeImage(cpSaveFile,imgOut);
 
   // Exit Main
   return 0;
@@ -262,5 +271,153 @@ ifp.getline(header,100,'\n');
 
  ifp.close();
 
+}
+
+void findComponentBFS(Image inputImage, Image &outputImage, int i, int j, int label) // Oliver
+{
+	// Init vars
+	int pi,pj,ni,nj;
+	bool bRowBelow,bColRight;
+	int inVal, outVal;
+	int iSubRow = 0;
+	int iSubCol = 0;
+	int iRowMax,iColMax,iGrayLvl;
+
+	// get Image Info to determine boundaries
+	inputImage.getImageInfo(iRowMax,iColMax,iGrayLvl);
+
+	// search grid size (ex: 3 would be 3x3 grid)
+	int iGrid = 3;
+
+	QueueType<int> queList(MAX_QUE);
+
+	queList.MakeEmpty();
+
+	queList.Enqueue(i, j); // initialize Queue
+
+	while(!queList.isEmpty())
+	{
+		queList.Dequeue(pi, pj);
+		outputImage.setPixelVal(pi, pj, label*10);
+
+		ni = pi;
+		nj = pj;
+
+		// Loop till row iterative counter < iSearchSec
+		for( i = 0; i < iGrid; i++)
+		{
+			// Check if row above or bottom will be checked
+			bRowBelow = (i % 2) == 1;
+
+			// Set test row
+			if( bRowBelow )
+				ni += i - iSubRow;
+			else
+				ni -= i + iSubRow;
+
+			// If row doesn't exist, move to a row that exists
+			if( ni < 0 || ni >= iRowMax)
+			{
+				if( bRowBelow )
+				{
+					iSubRow = ni - i;
+					ni -= iSubRow;
+				}
+				else
+				{
+					iSubRow = i - ni;
+					ni += iSubRow;
+				}
+			}
+
+			// Loop till col iterative counter < iSearchSec
+			for( j = 0; j < iGrid; j++)
+			{
+				// Check if col left or right will be checked
+				bColRight = (j % 2) == 1;
+
+				// Set test col
+				if( bColRight )
+					nj += j - iSubCol;
+				else
+					nj -= j + iSubCol;
+
+				// If col doesn't exist, move to a col that exists
+				if( nj < 0 || nj >= iColMax)
+				{
+					if( bColRight )
+					{
+						iSubCol = nj - j;
+						nj -= iSubCol;
+					}
+					else
+					{
+						iSubCol = j - nj;
+						nj += iSubCol;
+					}
+				}
+
+				inputImage.getPixelVal(ni,nj,inVal);
+				outputImage.getPixelVal(ni,nj,outVal);
+
+				if( inVal == 255 && outVal == 255 )
+				{
+					outputImage.setPixelVal(ni,nj,-1); // mark this location
+					queList.Enqueue(ni, nj);
+				}
+			}
+
+			// Reset nj
+			nj = pi;
+		}
+
+	}
+}
+
+int computeComponents(Image *inputImage, Image *outputImage) // Oliver
+{
+	int connComp = 0;
+	int i,j,iN,iM,iQ;
+	int inVal, outVal;
+	int label;
+
+	// getImageInfo
+	inputImage->getImageInfo(iN,iM,iQ);
+
+	//Image inImage(*inputImage);
+	//Image outImage(*outputImage);
+
+	//set outputImage to white (255) // unlabeled
+	for(i = 0; i < iN; i++)
+	{
+		for(j = 0; j < iM; j++)
+		{
+			// set pixel to 255 unlabeled
+			outputImage->setPixelVal(i,j,255);
+		}
+	}
+
+	for( i = 0; i < iN; i++ )
+	{
+		for( j = 0; j < iM; j++ )
+		{
+			inputImage->getPixelVal(i,j,inVal);
+			outputImage->getPixelVal(i,j,outVal);
+
+			if(inVal == 255 && outVal == 255)
+			{
+				++connComp;
+				label = connComp; // new label
+
+				//findComponenet // implement recursively...
+
+				// or ... implement iteratively
+				findComponentBFS(*inputImage, *outputImage, i, j, label);
+				// findComponentDFS(inputImage, outputImage, i, j, label);
+			}
+		}
+	}
+
+	return connComp;
 }
 

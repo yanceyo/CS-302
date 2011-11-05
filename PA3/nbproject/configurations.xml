@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="80">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df name="PA3" root=".">
+      <df name="debug">
+        <in>moc_imageui.cpp</in>
+      </df>
+      <df name="imageAssignment3.app">
+        <df name="Contents">
+          <df name="MacOS">
+          </df>
+          <df name="Resources">
+          </df>
+        </df>
+      </df>
+      <df name="release">
+      </df>
+      <in>PixelType.cpp</in>
+      <in>PixelType.h</in>
+      <in>RegionType.cpp</in>
+      <in>RegionType.h</in>
+      <in>StackType.cpp</in>
+      <in>StackType.h</in>
+      <in>image.cpp</in>
+      <in>image.h</in>
+      <in>imageui.cpp</in>
+      <in>imageui.h</in>
+      <in>main.cpp</in>
+      <in>moc_imageui.cpp</in>
+      <in>queue.cpp</in>
+      <in>queue.h</in>
+      <in>ui_imageui.h</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+      <itemPath>imageAssignment3.pro</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>imageAssignment3.app/Contents/MacOS/imageAssignment3</executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>../../QtSDK/QtSources/4.8.0/include</pElem>
+            </incDir>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+      <item path="PixelType.cpp" ex="false" tool="3" flavor="0">
+      </item>
+      <item path="PixelType.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="RegionType.cpp" ex="false" tool="3" flavor="0">
+      </item>
+      <item path="RegionType.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="StackType.cpp" ex="false" tool="3" flavor="0">
+      </item>
+      <folder path="PA3">
+        <ccTool>
+          <incDir>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/include</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="PA3/debug">
+        <ccTool>
+          <incDir>
+            <pElem>/root/workspace/imageAssignment1/debug</pElem>
+            <pElem>/usr/include/c++/4.4/x86_64-linux-gnu/bits</pElem>
+            <pElem>/usr/include/c++/4.4/bits</pElem>
+            <pElem>/usr/include/c++/4.4</pElem>
+            <pElem>/root/workspace/imageAssignment1</pElem>
+            <pElem>/usr/include/c++/4.4/ext</pElem>
+            <pElem>/usr/lib/gcc/x86_64-linux-gnu/4.4.5/include</pElem>
+            <pElem>/usr/include/qt4/QtGui</pElem>
+            <pElem>/usr/include/c++/4.4/debug</pElem>
+            <pElem>/usr/include/qt4/QtCore</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <item path="image.cpp" ex="false" tool="1" flavor="4">
+        <ccTool>
+          <incDir>
+            <pElem></pElem>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="imageui.cpp" ex="false" tool="1" flavor="4">
+        <ccTool>
+          <incDir>
+            <pElem></pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/lib/QtCore.framework/Versions/4/Headers</pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/include/QtGui</pElem>
+            <pElem>.</pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/include/QtCore</pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/include</pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/lib/QtGui.framework/Versions/4/Headers</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor="4">
+        <ccTool>
+          <incDir>
+            <pElem></pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/lib/QtCore.framework/Versions/4/Headers</pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/include/QtGui</pElem>
+            <pElem>.</pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/include/QtCore</pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/include</pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/lib/QtGui.framework/Versions/4/Headers</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="moc_imageui.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem></pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/lib/QtCore.framework/Versions/4/Headers</pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/include/QtGui</pElem>
+            <pElem>.</pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/include/QtCore</pElem>
+            <pElem>../../QtSDK/Desktop/Qt/4.8.0/gcc/include</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="queue.cpp" ex="false" tool="3" flavor="0">
+      </item>
+      <item path="queue.h" ex="true" tool="3" flavor="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

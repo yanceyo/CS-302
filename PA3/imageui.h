@@ -13,8 +13,8 @@
 #include "StackType.h"
 #include "queue.h"
 #include "PixelType.h"
-#include "RegionType.h"
 #include "ImgGeo.h"
+#include "RegionType.h"
 #include <string>
 #include <cstdlib>
 #include <QMessageBox>

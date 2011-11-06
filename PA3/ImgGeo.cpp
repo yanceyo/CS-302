@@ -5,11 +5,10 @@
  * Created on November 6, 2011
  */
 
-#include <math.h>
-
-#include "ImgGeo.h"
 #include "PixelType.h"
+#include "ImgGeo.h"
 #include "image.h"
+#include <cmath>
 
 ImgGeo::ImgGeo()
 {
@@ -21,6 +20,20 @@ ImgGeo::ImgGeo()
     axisMin = 0;
     orienTheta = 0;
     dEccentric = 0;
+}
+
+ImgGeo::ImgGeo(PixelType<imageNode> listImg)
+{
+    ctrX = 0;
+    ctrY = 0;
+    prinMax = 0;
+    prinMin = 0;
+    axisMax = 0;
+    axisMin = 0;
+    orienTheta = 0;
+    dEccentric = 0;
+    
+    setList(listImg);
 }
 
 double ImgGeo::getMoment(int p, int q)
@@ -39,7 +52,7 @@ double ImgGeo::getMoment(int p, int q)
     for(int i=0; i < pixImg.LengthIs(); i++)
     {
         // Get pixel coordinates to sum up
-        pixImg.GetNextItem(pixelCoord)
+        pixImg.GetNextItem(pixelCoord);
         
         dSum += pow(sqrt((pixelCoord.col - ctrX)),p) * pow(sqrt((pixelCoord.row - ctrY)),q);
     }

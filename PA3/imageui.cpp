@@ -919,6 +919,7 @@ int imageUI::computeComponents(Image * inputImage, Image * outputImage, int flag
                                 
                                 // Adds the pixel list - region to region list
                                 itmReg.listPix = pixRegion;
+                                itmReg.propGeo.setList(pixRegion);
                                 listReg.InsertItem(itmReg);
 			}
 		}

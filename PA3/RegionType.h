@@ -32,9 +32,9 @@ class key
         // since I didn't want the PixelType and
         // properties to be tied to each x and y
         // listed
-        int x;
         int y;
         PixelType<imageNode> listPix;
+        ImgGeo propGeo;
 };
 
 template<class ItemType>

@@ -8,10 +8,14 @@
 #ifndef IMGGEO_H
 #define	IMGGEO_H
 
+#include "image.h"
+#include "PixelType.h"
+
 class ImgGeo
 {
     public:
         ImgGeo();
+        ImgGeo(PixelType<imageNode>);
         void setList(PixelType<imageNode> pixList)
         {
             pixImg = pixList;

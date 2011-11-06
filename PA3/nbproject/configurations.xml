@@ -15,6 +15,8 @@
       </df>
       <df name="release">
       </df>
+      <in>ImgGeo.cpp</in>
+      <in>ImgGeo.h</in>
       <in>PixelType.cpp</in>
       <in>PixelType.h</in>
       <in>RegionType.cpp</in>

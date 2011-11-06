@@ -900,7 +900,6 @@ int imageUI::computeComponents(Image * inputImage, Image * outputImage, int flag
                                 // Beginning of new pixel list
                                 pixLbl.row = i;
                                 pixLbl.col = j;
-                                pixRegion.InsertItem(pixLbl);
 
 				if( flag == 1 )
 				{
@@ -999,6 +998,9 @@ void imageUI::findComponentDFS(Image * inputImage, Image * outputImage, int i, i
 	{
 		imageStack.Pop(node);
 		outputImage->setPixelVal(node.row,node.col,label * 10); // label this pixel
+                
+                // Insert into PixelType list
+                pixList.InsertItem(newNode);
 
 		// check neighbors for white
 		for ( nRow = -1; nRow < 2; nRow++)
@@ -1021,9 +1023,6 @@ void imageUI::findComponentDFS(Image * inputImage, Image * outputImage, int i, i
 						newNode.col = newCol;
 						// push new node into stack
 						imageStack.Push(newNode);
-                                                
-                                                // Insert into PixelType list
-                                                pixList.InsertItem(newNode);
 					}
 				}
 			}

@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QDataStream>
 #include <QFile>
+#include <cmath>
 #include <fstream>
 #include <iostream>
 #include "ui_imageui.h"
@@ -13,6 +14,7 @@
 #include "queue.h"
 #include "PixelType.h"
 #include "RegionType.h"
+#include "ImgGeo.h"
 #include <string>
 #include <cstdlib>
 #include <QMessageBox>
